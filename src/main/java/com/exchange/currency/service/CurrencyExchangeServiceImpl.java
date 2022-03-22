@@ -61,7 +61,9 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
             String reverseCurrencyPair =
                     requestAmountDto.spendCurrency().name() + "-" + requestAmountDto.purchaseCurrency().name();
             if (currencyRateProperties.getRateMap().containsKey(reverseCurrencyPair)) {
-                return BigDecimal.valueOf(currencyRateProperties.getRateMap().get(reverseCurrencyPair));
+                return BigDecimal.ONE.divide(
+                        BigDecimal.valueOf(currencyRateProperties.getRateMap().get(reverseCurrencyPair)),
+                        MathContext.DECIMAL64);
             }
 
             throw new NotFoundException("Currency pair " + currencyPair + " not found");
