@@ -34,9 +34,9 @@ class CurrencyExchangeControllerTest {
                 .purchaseCurrency(CurrencyName.GRB.name());
         //WHEN
         mvc.perform(post(EXCHANGE_URI)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(bodyModel)))
-        //THEN
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(bodyModel)))
+                //THEN
                 .andExpect(status().isOk());
     }
 }

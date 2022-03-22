@@ -1,8 +1,8 @@
 package com.exchange.currency.convertor;
 
 import com.exchange.currency.api.model.ExchangeInformationModel;
-import com.exchange.currency.service.dto.ExchangeInformationDto;
 import com.exchange.currency.service.dto.CurrencyName;
+import com.exchange.currency.service.dto.ExchangeInformationDto;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
