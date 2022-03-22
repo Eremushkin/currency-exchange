@@ -1,0 +1,40 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Currency Exchange
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/exchange:
+    post:
+      summary: Currency Exchange
+      operationId: exchange
+      requestBody:
+        description: JSON object containing exchange information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExchangeInformationModel"
+      responses:
+        '200':
+          description: JSON object containing exchange information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExchangeInformationModel"
+components:
+  schemas:
+    ExchangeInformationModel:
+      required:
+        - SpendCurrency
+        - PurchaseCurrency
+      properties:
+        SpendAmount:
+          type: string
+        SpendCurrency:
+          type: string
+        PurchaseAmount:
+          type: string
+        PurchaseCurrency:
+          type: string

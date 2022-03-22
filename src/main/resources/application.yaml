@@ -1,0 +1,7 @@
+springdoc:
+
+config:
+  currency:
+    margin: 0.02
+    rateMap:
+      GRB-EUR: 1.23
