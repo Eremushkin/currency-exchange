@@ -28,9 +28,13 @@ paths:
           content:
             application/json:
               schema:
-                title: Currency Not Found
-                type: string
-                example: Not Found
+                $ref: "#/components/schemas/ApiErrorModel"
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorModel"
 
 components:
   schemas:

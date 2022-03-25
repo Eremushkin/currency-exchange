@@ -4,4 +4,4 @@ config:
   currency:
     margin: 0.02
     rateMap:
-      GRB-EUR: 1.2375
+      GBP-EUR: 1.2375
