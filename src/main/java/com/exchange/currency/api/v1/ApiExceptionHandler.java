@@ -16,8 +16,8 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiErrorModel().errorMessage(e.getMessage()));
     }
 
-    @ExceptionHandler(CurrencyAmountValidationException.class)
-    public ResponseEntity<ApiErrorModel> handelCurrencyAmountValidationException(CurrencyAmountValidationException e) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiErrorModel> handelCurrencyAmountValidationException(IllegalArgumentException e) {
         return ResponseEntity.unprocessableEntity().body(new ApiErrorModel().errorMessage(e.getMessage()));
     }
 }
