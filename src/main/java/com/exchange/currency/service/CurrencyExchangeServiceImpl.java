@@ -1,9 +1,10 @@
 package com.exchange.currency.service;
 
 import com.exchange.currency.config.CurrencyRateProperties;
+import com.exchange.currency.exception.CurrencyAmountValidationException;
+import com.exchange.currency.exception.CurrencyPairNotFoundException;
 import com.exchange.currency.service.dto.ExchangeInformationDto;
 import org.springframework.stereotype.Component;
-import org.webjars.NotFoundException;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -22,7 +23,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
         BigDecimal rate = getRate(requestAmountDto);
         if (requestAmountDto.spendAmount() == null) {
             if (requestAmountDto.purchaseAmount() == null) {
-                throw new IllegalArgumentException("If spend amount is NULL, purchase amount should be NOT NULL");
+                throw new CurrencyAmountValidationException("If spend amount is NULL, purchase amount should be NOT NULL");
             }
 
             BigDecimal spendAmountResult = BigDecimal.valueOf(1.0 + currencyRateProperties.getMargin())
@@ -37,7 +38,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
             );
         } else {
             if (requestAmountDto.purchaseAmount() != null) {
-                throw new IllegalArgumentException("spend amount and purchase amount cannot be NOT NULL the same time");
+                throw new CurrencyAmountValidationException("spend amount and purchase amount cannot be NOT NULL the same time");
             }
             BigDecimal purchaseAmountResult = requestAmountDto.spendAmount()
                     .divide(rate, MathContext.DECIMAL64)
@@ -66,7 +67,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
                         MathContext.DECIMAL64);
             }
 
-            throw new NotFoundException("Currency pair " + currencyPair + " not found");
+            throw new CurrencyPairNotFoundException(currencyPair);
         }
 
         return BigDecimal.valueOf(currencyRateProperties.getRateMap().get(currencyPair));

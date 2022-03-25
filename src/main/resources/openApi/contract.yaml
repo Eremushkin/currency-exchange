@@ -23,8 +23,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExchangeInformationModel"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                title: Currency Not Found
+                type: string
+                example: Not Found
+
 components:
   schemas:
+    ApiErrorModel:
+      properties:
+        ErrorMessage:
+          type: string
+
     ExchangeInformationModel:
       required:
         - SpendCurrency
